@@ -89,16 +89,89 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    var result = [];
+    _.each(collection, function(item) {
+      if (test(item)) {
+        result.push(item);
+      }
+    });
+    return result;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    var result = [];
+    _.each(collection, function(item) {
+      if (!test(item)) {
+        result.push(item);
+      }
+    });
+    return result;
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    // [1, 2, 3, 4, 1, 2]
+
+    // var result = [];
+    // var input = [];
+    // if (iterator !== undefined) {
+    //   for (var i = 0; i < array.length; i++) {
+    //     input.push(iterator(array[i], i, array));
+    //   }
+
+
+    //   for (var j = 0; j < input.length; j++) {
+    //     if (!result.includes(input[j])) {
+    //       result.push(input[j]);
+
+    //     }
+    //   }
+
+    // } else {
+    //   for (var j = 0; j < array.length; j++) {
+    //     if (!result.includes(array[j])) {
+    //       result.push(array[j]);
+    //     }
+    //   }
+    // }
+    // return result;
+
+    // [1, 2, 3, 4, 1, 2]
+
+    if (iterator !== undefined) {
+      var iteratedArray = [];
+      for (var i = 0; i < array.length; i++) {
+        iteratedArray.push(iterator(array[i], i, array));
+      }
+
+      var result = [];
+      var index = [];
+
+      for (var i = 0; i < iteratedArray.length; i++) {
+        if (!result.includes(iteratedArray[i])) {
+          result.push(iteratedArray[i]);
+          index.push(i);
+        }
+      }
+
+      var final = [];
+      for (var j = 0; j < index.length; j++) {
+        final.push(array[j]);
+      }
+      return final;
+    } else {
+      var result = [];
+      for (var j = 0; j < array.length; j++) {
+        if (!result.includes(array[j])) {
+          result.push(array[j]);
+        }
+      }
+      return result;
+    }
+
   };
 
 
