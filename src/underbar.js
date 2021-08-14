@@ -350,6 +350,23 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var keys = [];
+    var values = [];
+
+    for (var key in arguments) {
+      for (var key2 in arguments[key]) {
+        keys.push(key2);
+        values.push(arguments[key][key2]);
+      }
+    }
+
+    for (var i = 0; i < values.length; i++) {
+      if (obj[keys[i]] === undefined) {
+        obj[keys[i]] = values[i];
+      }
+    }
+
+    return obj;
   };
 
 
