@@ -449,32 +449,28 @@
   _.shuffle = function(array) {
 
 
-    // var randomNumbers = [];
-    // var index = [];
+    var randomNumbers = [];
+    var index = [];
 
-    // for (var i = 0; i < array.length; i++) {
-    //   randomNumbers.push(Math.random());
-    //   index.push(i);
-    // }
+    for (var i = 0; i < array.length; i++) {
+      randomNumbers.push(Math.random());
+      index.push(i);
+    }
 
-    // var randomNumbers2 = [];
-    // for (var x = 0; x < randomNumbers.length; x++) {
-    //   randomNumbers2.push(randomNumbers[x]);
-    // }
+    var randomNumbers2 = randomNumbers.slice();
+    var sortedRandom = randomNumbers2.sort();
 
-    // var sortedRandom = randomNumbers2.sort();
+    var sortedIndex = [];
+    for (var j = 0; j < sortedRandom.length; j++) {
+      sortedIndex.push(sortedRandom.indexOf(randomNumbers[j]));
+    }
 
-    // var sortedIndex = [];
-    // for (var j = 0; j < sortedRandom.length; j++) {
-    //   sortedIndex.push(sortedRandom.indexOf(randomNumbers[j]));
-    // }
+    var result = [];
+    for (var y = 0; y < array.length; y++) {
+      result.push(array[sortedIndex[y]]);
+    }
 
-    // var result = [];
-    // for (var y = 0; y < array.length; y++) {
-    //   result.push(array[sortedIndex[y]]);
-    // }
-
-    // return result;
+    return result;
 
   };
 
